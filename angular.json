@@ -25,9 +25,36 @@
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": ["src/styles.scss"],
             "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "projet-jee-master-frontend:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "projet-jee-master-frontend:build:production"
+            }
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "cf6ad0ee-1cda-42fb-a413-8e63238e36f5"
   }
 }

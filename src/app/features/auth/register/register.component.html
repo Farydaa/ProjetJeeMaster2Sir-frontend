@@ -1,0 +1,86 @@
+<div class="register-container">
+  <div class="register-card">
+    <h1 class="title">Inscription</h1>
+    
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Prénom</label>
+          <input 
+            type="text" 
+            [(ngModel)]="firstName" 
+            name="firstName"
+            placeholder="Votre prénom"
+            required
+            class="form-control"
+          >
+        </div>
+
+        <div class="form-group">
+          <label>Nom</label>
+          <input 
+            type="text" 
+            [(ngModel)]="lastName" 
+            name="lastName"
+            placeholder="Votre nom"
+            required
+            class="form-control"
+          >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Email</label>
+        <input 
+          type="email" 
+          [(ngModel)]="email" 
+          name="email"
+          placeholder="exemple@email.com"
+          required
+          class="form-control"
+        >
+      </div>
+
+      <div class="form-group">
+        <label>Mot de passe</label>
+        <div class="password-wrapper">
+          <input 
+            [type]="showPassword ? 'text' : 'password'" 
+            [(ngModel)]="password" 
+            name="password"
+            placeholder="••••••••"
+            required
+            class="form-control"
+          >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Confirmer le mot de passe</label>
+        <div class="password-wrapper">
+          <input 
+            [type]="showPassword ? 'text' : 'password'" 
+            [(ngModel)]="confirmPassword" 
+            name="confirmPassword"
+            placeholder="••••••••"
+            required
+            class="form-control"
+          >
+          <button type="button" (click)="togglePassword()" class="toggle-password">
+            {{ showPassword ? '🙈' : '👁️' }}
+          </button>
+        </div>
+      </div>
+
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+
+      <button type="submit" class="btn-primary">Créer mon compte</button>
+      
+      <p class="login-link">
+        Déjà inscrit ? <a routerLink="/login">Se connecter</a>
+      </p>
+    </form>
+  </div>
+</div>
