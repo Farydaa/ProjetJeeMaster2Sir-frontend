@@ -1,0 +1,46 @@
+<div class="login-container">
+  <div class="login-card">
+    <h1 class="title">Connexion</h1>
+    
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>Email</label>
+        <input 
+          type="email" 
+          [(ngModel)]="email" 
+          name="email"
+          placeholder="exemple@email.com"
+          required
+          class="form-control"
+        >
+      </div>
+
+      <div class="form-group">
+        <label>Mot de passe</label>
+        <div class="password-wrapper">
+          <input 
+            [type]="showPassword ? 'text' : 'password'" 
+            [(ngModel)]="password" 
+            name="password"
+            placeholder="••••••••"
+            required
+            class="form-control"
+          >
+          <button type="button" (click)="togglePassword()" class="toggle-password">
+            {{ showPassword ? '🙈' : '👁️' }}
+          </button>
+        </div>
+      </div>
+
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+
+      <button type="submit" class="btn-primary">Se connecter</button>
+      
+      <p class="register-link">
+        Pas encore inscrit ? <a routerLink="/register">Créer un compte</a>
+      </p>
+    </form>
+  </div>
+</div>

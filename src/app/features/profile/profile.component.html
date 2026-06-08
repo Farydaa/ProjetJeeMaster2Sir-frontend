@@ -1,0 +1,108 @@
+<div class="profile-container">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <h2>SERGE</h2>
+      <p>Entretien Virtuel</p>
+    </div>
+    <nav class="sidebar-nav">
+      <a routerLink="/dashboard" class="nav-item">
+        📊 Tableau de bord
+      </a>
+      <a routerLink="/profile" class="nav-item active">
+        👤 Mon profil
+      </a>
+      <a routerLink="/interview/chat" class="nav-item">
+        💬 Mode Chat
+      </a>
+      <a routerLink="/interview/voice" class="nav-item">
+        🎤 Mode Vocal
+      </a>
+      <a routerLink="/interview/avatar" class="nav-item">
+        🎭 Mode Avatar
+      </a>
+      <a href="#" class="nav-item" (click)="logout(); $event.preventDefault()">
+        🚪 Déconnexion
+      </a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <header class="header">
+      <h1>Mon profil</h1>
+      <div class="user-info">
+        <span>👋 {{ user.firstName }} {{ user.lastName }}</span>
+      </div>
+    </header>
+
+    <!-- Profile Section -->
+    <div class="profile-section">
+      <div class="profile-card">
+        <div class="photo-section">
+          <div class="photo-upload">
+            <img [src]="previewUrl || 'https://via.placeholder.com/150?text=Photo'" 
+                 alt="Photo de profil" 
+                 class="profile-photo">
+            <label class="upload-btn">
+              📷 Changer la photo
+              <input type="file" (change)="onFileSelected($event)" accept="image/*" hidden>
+            </label>
+          </div>
+        </div>
+
+        <div class="info-section">
+          <h2>Informations personnelles</h2>
+          <form>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Prénom</label>
+                <input type="text" [(ngModel)]="user.firstName" name="firstName" class="form-control">
+              </div>
+              <div class="form-group">
+                <label>Nom</label>
+                <input type="text" [(ngModel)]="user.lastName" name="lastName" class="form-control">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" [(ngModel)]="user.email" name="email" class="form-control">
+            </div>
+            <div class="form-group">
+              <label>Poste visé</label>
+              <input type="text" [(ngModel)]="user.poste" name="poste" class="form-control" placeholder="Ex: Développeur Senior">
+            </div>
+            <button type="button" class="btn-primary" (click)="sauvegarderProfil()">💾 Sauvegarder</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Historique des entretiens -->
+      <div class="historique-section">
+        <h2>Historique des entretiens</h2>
+        <div class="table-container">
+          <table class="historique-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Poste</th>
+                <th>Score</th>
+                <th>Durée</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of historiqueEntretiens">
+                <td>{{ item.date }}</td>
+                <td>{{ item.poste }}</td>
+                <td [class.high-score]="item.score >= 80" [class.low-score]="item.score < 80">
+                  {{ item.score }}%
+                </td>
+                <td>{{ item.duree }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
